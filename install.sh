@@ -42,7 +42,14 @@ function printHelp {
 
 CINFLAGS=""
 LINFLAGS=""
-PEX=python
+case "$(python --version 2>&1)" in
+    *" 3."*)
+        PEX=python2
+        ;;
+    *)
+        PEX=python
+        ;;
+esac
 while getopts ":i:l:p:c:" opt; do
   case $opt in
     h)
